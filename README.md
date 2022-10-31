@@ -1,13 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-
+```bash
 First, create .env file contain:
+
 MONGO_=URI="mongodb://127.0.0.1:27017/nextjscrud"
 JWT_SECRET=whateveryouwant
-
+```
 
 ```bash
+second run
+
+yarn
+
 npm run dev
 # or
 yarn dev
