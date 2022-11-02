@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs';
 import connectMongo from '../../../libs/db';
 import Users from '../../../models/userModel';
 import jwt from 'jsonwebtoken';
-import db from '../../../libs/db';
 
 export default async function handler(req, res) {
 
