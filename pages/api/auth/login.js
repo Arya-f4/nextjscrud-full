@@ -6,10 +6,12 @@ import db from '../../../libs/db';
 
 export default async function handler(req, res) {
 
+  await connectMongo();
   const { email, password } = req.body;
-  const salt = bcrypt.genSaltSync(10);
-  const passwordHash = bcrypt.hashSync(password, salt);
-  const checkUser = await Users.findOne({ email, passwordHash });
+  const checkUser = await Users.findOne({ email });
+  if (!checkUser) return res.status(401).end();
+  const checkPassword = await bcrypt.compare(password, checkUser.password);
+  if (!checkPassword) return res.status(401).end();
 
   const token = jwt.sign({
     _id: checkUser._id,
