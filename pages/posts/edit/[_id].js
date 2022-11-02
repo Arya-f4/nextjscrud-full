@@ -2,23 +2,18 @@ import React, { useState } from 'react';
 import { authPage } from "../../../middlewares/authorizationPage";
 import Link from 'next/link';
 import Nav from '../../../components/Nav';
+
 export async function getServerSideProps(ctx) {
-  const { token } = await authPage(ctx);
 
   const { _id } = ctx.query;
-
-  const postsReq = await fetch('http://localhost:3000/api/posts/detail/' + _id, {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
-  });
-
+  console.log(_id);
+  const postsReq = await fetch('http://localhost:3000/api/posts/detail/' + _id);
+  console.log(postsReq);
 
   const res = await postsReq.json();
 
   return {
     props: {
-      token,
       posts: res.data
     }
   }
