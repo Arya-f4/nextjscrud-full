@@ -1,17 +1,14 @@
 
-import authorization from '../../../../middlewares/authorization';
 import Posts from '../../../../models/postModel';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).end();
-  const auth = await authorization(req, res);
-  
+
 
   const { _id } = req.query;
-  const idpure = _id.slice(0, -2);
- 
 
-  const posts = await Posts.findOne({ idpure });
+
+  const posts = await Posts.findOne({ _id });
 
   if (!posts) return res.status(404).end();
 
